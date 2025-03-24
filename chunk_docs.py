@@ -1,12 +1,13 @@
 import os
 import nltk
+from typing import List  
 from nltk.tokenize import sent_tokenize
 from config import RAW_DOCS_PATH, CHUNKED_DOCS_PATH
 
 # Download necessary NLTK resources
 nltk.download('punkt')
 
-def chunk_document(text: str, chunk_size: int = 200) -> list[str]:
+def chunk_document(text: str, chunk_size: int = 200) -> List[str]:  
     """
     Split document into chunks while preserving sentence boundaries.
     
