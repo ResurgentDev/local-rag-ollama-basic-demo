@@ -5,6 +5,4 @@ requests>=2.31.0
 torch>=2.0.0
 transformers>=4.30.0
 faiss-cpu>=1.7.4
-tqdm>=4.65.0  # New: for progress bars
-rich>=13.0.0  # New: for better CLI formatting
 

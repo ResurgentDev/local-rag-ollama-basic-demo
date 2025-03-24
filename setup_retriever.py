@@ -1,13 +1,7 @@
 import os
 import faiss
 import numpy as np
-from config import *
-
-# Paths
-EMBEDDINGS_PATH = os.path.normpath('C:/Users/jiang/Development/RAG/Docs/Embeddings')
-CHUNKED_PATH = os.path.normpath('C:/Users/jiang/Development/RAG/Docs/Chunked')
-INDEXES_PATH = os.path.normpath('C:/Users/jiang/Development/RAG/Docs/Embeddings/Indexes')
-INDEX_FILE = os.path.join(INDEXES_PATH, 'retriever.index')
+from config import EMBEDDINGS_PATH, CHUNKED_DOCS_PATH, INDEXES_PATH, INDEX_FILE
 
 def setup_faiss_index() -> tuple[faiss.IndexFlatL2, list[str]]:
     """
@@ -28,7 +22,7 @@ def setup_faiss_index() -> tuple[faiss.IndexFlatL2, list[str]]:
         if file.endswith('.npy'):
             # Derive corresponding chunk filename
             chunk_name = file.replace('.npy', '.txt')
-            chunk_file = os.path.join(CHUNKED_PATH, chunk_name)
+            chunk_file = os.path.join(CHUNKED_DOCS_PATH, chunk_name)
 
             # Check if the chunk file exists
             if os.path.exists(chunk_file):

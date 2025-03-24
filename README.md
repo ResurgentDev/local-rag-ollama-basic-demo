@@ -35,6 +35,18 @@ A simple demonstration of implementing a local RAG (Retrieval-Augmented Generati
 
 ## Quick Start
 
+By default, the project stores all data in:
+```
+~/RAG/
+├── Docs/
+    ├── Raw/         # Original markdown files
+    ├── Chunked/     # Split documents
+    └── Embeddings/  # Document embeddings
+        └── Indexes/ # FAISS indexes
+```
+
+You can override these locations in `config.py`.
+
 1. Fetch example docs:
 ```bash
 python fetch_docs.py

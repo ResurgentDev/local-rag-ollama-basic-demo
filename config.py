@@ -2,7 +2,7 @@ import os
 
 # Base paths - users can override these as needed
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RAG_DIR = os.path.join(os.path.expanduser("~"), "Development", "RAG")
+RAG_DIR = os.path.join(os.path.expanduser("~"), "RAG")
 
 # Derived paths for data storage
 DOCS_DIR = os.path.join(RAG_DIR, "Docs")
@@ -26,8 +26,7 @@ def ensure_directories():
         os.makedirs(directory, exist_ok=True)
 
 # Model settings
-DEFAULT_MODEL = "ollama-expert-deepseek-r1:1.5b"
-
+DEFAULT_MODEL = "llama2:latest"  
 # Query settings
 DEFAULT_TOP_K = 8
 DEFAULT_RELEVANCE_THRESHOLD = 0.5
