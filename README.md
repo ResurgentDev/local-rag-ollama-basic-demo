@@ -2,6 +2,26 @@
 
 A minimal demonstration of implementing a local RAG (Retrieval-Augmented Generation) system using Ollama. This basic demo illustrates foundational RAG concepts with minimal complexity and will remain unchanged to serve as a learning reference - for active development, see [local-rag-ollama](https://github.com/ResurgentDev/local-rag-ollama).
 
+## Quick Start
+```bash
+python -m venv venv
+.\venv\Scripts\activate  # Windows
+source venv/bin/activate # Linux/Mac
+
+git clone https://github.com/ResurgentDev/local-rag-ollama-basic-demo.git
+cd local-rag-ollama-basic-demo
+pip install -r requirements.txt
+
+ollama pull deepseek-r1:1.5b  # smallest model (~1.5GB)
+
+python fetch_docs.py
+python chunk_docs.py
+python create_embeddings.py
+python setup_retriever.py
+python query_model.py
+```
+See [QUICKSTART.md](QUICKSTART.md) for a beginner-friendly command list.
+
 ## Important Notes
 
 - This is a **basic demo** for learning purposes
