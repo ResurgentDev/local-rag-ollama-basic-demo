@@ -37,39 +37,90 @@ def fetch_docs(url=None):
     docs_url = url or DEFAULT_DOCS_URL
     print(f"Fetching documentation from: {docs_url}")
     
-    base_html = fetch_url(docs_url)
-    md_links = get_links(base_html, '.md')
-
-    # Convert relative links to absolute URLs and filter for markdown files
-    valid_links = []
-    base_url = docs_url.rstrip('/')
-    
-    for link in md_links:
-        # Handle both relative and absolute URLs
-        if link.startswith('http'):
-            valid_links.append(link)
-        else:
-            # For GitHub specifically, convert blob links to raw content
-            if 'github.com' in base_url and '/blob/' in link:
-                raw_link = link.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/')
-                valid_links.append(raw_link)
+    try:
+        # Parse the URL properly
+        parsed_url = urlparse(docs_url)
+        if not parsed_url.scheme:
+            raise ValueError("URL must include scheme (e.g., https://)")
+        
+        # Handle different URL types
+        if 'github.com' in parsed_url.netloc:
+            # GitHub specific handling
+            parts = docs_url.split('github.com/')[1].split('/tree/')
+            if len(parts) == 2:
+                org_repo = parts[0]
+                path = parts[1]
+                base_url = f'https://raw.githubusercontent.com/{org_repo}/{path}'
             else:
-                # For other sources, just join with base URL
-                valid_links.append(urljoin(base_url, link))
-
-    # Remove duplicates while preserving order
-    valid_links = list(dict.fromkeys(valid_links))
-
-    for link in valid_links:
-        try:
-            filename = os.path.basename(urlparse(link).path)
-            if filename.endswith('.md'):
-                save_path = os.path.join(RAW_DOCS_PATH, filename)
-                os.makedirs(os.path.dirname(save_path), exist_ok=True)
-                download_file(link, save_path)
-                print(f'Downloaded: {filename} from {link}')
-        except Exception as e:
-            print(f'Error downloading {link}: {e}')
+                raise ValueError("Invalid GitHub URL format. Expected: github.com/owner/repo/tree/branch/path")
+        else:
+            # Generic URL handling
+            base_url = f"{parsed_url.scheme}://{parsed_url.netloc}{os.path.dirname(parsed_url.path)}"
+        
+        base_html = fetch_url(docs_url)
+        md_links = get_links(base_html, '.md')
+        
+        if not md_links:
+            print("Warning: No markdown files found at the specified URL")
+            return
+        
+        # Convert relative links to absolute URLs
+        valid_links = []
+        for link in md_links:
+            if link.startswith('http'):
+                valid_links.append(link)
+            elif 'github.com' in docs_url:
+                # GitHub specific link handling
+                if link.startswith('/'):
+                    link = link.lstrip('/')
+                if '#' in link:
+                    link = link.split('#')[0]
+                if 'blob/main' in link:
+                    link = link.replace('blob/main/', '')
+                elif 'blob/master' in link:
+                    link = link.replace('blob/master/', '')
+                raw_url = f"{base_url}/{link}"
+                valid_links.append(raw_url)
+            else:
+                # Generic URL handling
+                if link.startswith('//'):
+                    link = parsed_url.scheme + ':' + link
+                elif link.startswith('/'):
+                    link = f"{parsed_url.scheme}://{parsed_url.netloc}{link}"
+                else:
+                    link = urljoin(base_url + '/', link)
+                valid_links.append(link)
+        
+        # Remove duplicates while preserving order
+        valid_links = list(dict.fromkeys(valid_links))
+        
+        if not valid_links:
+            print("Warning: No valid markdown links found after processing")
+            return
+            
+        # Download files
+        success_count = 0
+        for link in valid_links:
+            try:
+                filename = os.path.basename(link.split('#')[0])
+                if filename.endswith('.md'):
+                    save_path = os.path.join(RAW_DOCS_PATH, filename)
+                    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+                    print(f'Downloading: {filename} from {link}')
+                    download_file(link, save_path)
+                    print(f'Downloaded: {filename}')
+                    success_count += 1
+            except Exception as e:
+                print(f'Error downloading {link}: {e}')
+        
+        if success_count == 0:
+            print("Warning: No files were successfully downloaded")
+        else:
+            print(f"Successfully downloaded {success_count} files")
+            
+    except Exception as e:
+        print(f"Error processing URL {docs_url}: {e}")
+        raise
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Fetch documentation from specified URL')
