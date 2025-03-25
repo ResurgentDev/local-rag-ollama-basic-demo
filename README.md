@@ -79,10 +79,13 @@ python query_model.py
 - LLM responses may sometimes hallucinate
 - Limited error handling
 - Hard-coded configurations
+- Document matching may not prioritize exact filename matches (e.g., when querying about README.md)
 
 ## Project Status
 
-This is a demonstration project. While functional, it's designed to show concepts rather than serve as a production system. Feel free to use it as a starting point for your own RAG implementation.
+This is a basic demonstration project designed to show core RAG concepts with minimal complexity. For a more feature-rich implementation with error handling, improved matching, and additional features, see [local-rag-ollama](https://github.com/ResurgentDev/local-rag-ollama).
+
+This repository will remain as-is to serve as a learning tool for understanding basic RAG implementation.
 
 ## License
 

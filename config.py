@@ -29,7 +29,7 @@ def ensure_directories():
 DEFAULT_MODEL = "llama2:latest"  
 # Query settings
 DEFAULT_TOP_K = 8
-DEFAULT_RELEVANCE_THRESHOLD = 0.5
+DEFAULT_RELEVANCE_THRESHOLD = 0.15  # Lower threshold to match typical similarity scores
 DEFAULT_MAX_CONTEXT_CHARS = 20000
 
 # Initialize directories when config is imported
