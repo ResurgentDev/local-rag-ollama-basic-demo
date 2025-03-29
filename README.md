@@ -1,3 +1,13 @@
+---
+
+📦 **Completed Demo Project** 📦
+
+This repository is a finalized demonstration of a basic [RAG pipeline/feature set]. Its purpose is to provide a simple, lightweight example for learning and reference.  
+
+While no active development or collaboration is planned, feedback is always welcome, and minor fixes or refinements may still occur. If you find value in this project, feel free to explore or get in touch with any questions!
+
+---
+
 # Local-RAG-Ollama Basic Demo
 
 A minimal demonstration of implementing a local RAG (Retrieval-Augmented Generation) system using Ollama. This basic demo illustrates foundational RAG concepts with minimal complexity and will remain unchanged to serve as a learning reference - for active development, see [local-rag-ollama](https://github.com/ResurgentDev/local-rag-ollama).
@@ -124,6 +134,25 @@ Default data storage structure:
     └── Embeddings/  # Document embeddings
         └── Indexes/ # FAISS indexes
 ```
+
+## About NLTK and punkt
+
+This project uses the Natural Language Toolkit (NLTK), specifically the punkt tokenizer. The punkt tokenizer is a pre-trained model used for splitting text into sentences. It is not included with the default NLTK installation and must be downloaded separately.
+
+How Does It Work Offline?
+Once the punkt tokenizer is downloaded, it is stored locally on your machine (in the default NLTK data directory, e.g., ~/.nltk_data). After this initial download, the tool can function offline without needing an internet connection.
+
+First-Time Setup
+If you run this tool for the first time on a new machine, the required punkt tokenizer will be automatically downloaded. Make sure you are online for this initial setup.
+
+You can pre-download the resource manually with the following command:
+
+bash
+```
+python -c "import nltk; nltk.download('punkt')"
+```
+Alternatively, this tool checks if the resource is already downloaded before attempting to fetch it dynamically. See the source code for more details.
+
 
 ## Known Limitations
 
