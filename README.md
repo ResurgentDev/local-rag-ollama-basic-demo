@@ -1,5 +1,3 @@
----
-
 📦 **Completed Demo Project** 📦 ⚠️ **Work-in-Progress (WIP)** ⚠️
 
 This repository is both a finalized demonstration of a basic RAG pipeline/feature set and part of my ongoing personal learning journey as I explore development tools, concepts, and practices. Its purpose is to provide a simple, lightweight example for learning and reference.
