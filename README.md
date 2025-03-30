@@ -1,10 +1,22 @@
 ---
 
-📦 **Completed Demo Project** 📦
+📦 Completed Demo Project 📦 ⚠️ Work-in-Progress (WIP) ⚠️
 
-This repository is a finalized demonstration of a basic [RAG pipeline/feature set]. Its purpose is to provide a simple, lightweight example for learning and reference.  
+This repository is both a finalized demonstration of a basic [RAG pipeline/feature set] and part of my ongoing personal learning journey as I explore development tools, concepts, and practices. Its purpose is to provide a simple, lightweight example for learning and reference.
 
-While no active development or collaboration is planned, feedback is always welcome, and minor fixes or refinements may still occur. If you find value in this project, feel free to explore or get in touch with any questions!
+While there may be other tools available that achieve similar tasks, this repository serves an educational purpose, showcasing my exploration and development skills.
+
+I’m sharing this repository to:
+
+Invite constructive feedback to accelerate my learning.
+
+Help others who might benefit from similar exploration.
+
+Engage potential collaborators or employers who value growth and curiosity.
+
+💡 While no active development or collaboration is planned for this repository, I welcome discussions, suggestions, and connections that could help refine and expand my work. Minor fixes or refinements may still occur.
+
+If you find value in this project and believe it could grow into something impactful, feel free to explore or get in touch with any questions!
 
 ---
 
