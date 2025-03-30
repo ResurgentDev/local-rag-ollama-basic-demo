@@ -47,6 +47,8 @@ See [QUICKSTART.md](QUICKSTART.md) for a beginner-friendly command list.
 - Uses Ollama's documentation as example data
 - Shows basic document retrieval and LLM integration
 - Intentionally simplified for learning purposes
+- No type hints used to keep code approachable for beginners
+- Focuses on core functionality over advanced features
 
 ## What This Isn't
 

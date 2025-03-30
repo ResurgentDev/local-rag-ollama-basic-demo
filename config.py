@@ -16,7 +16,8 @@ INDEX_FILE = os.path.join(INDEXES_PATH, "retriever.index")
 EMBEDDING_SCRIPT = os.path.join(BASE_DIR, "create_embeddings.py")
 
 # Default documentation source
-DEFAULT_DOCS_URL = 'https://github.com/ollama/ollama/tree/main/docs'
+DEFAULT_DOCS_URL = "https://github.com/ollama/ollama/tree/main/docs"
+
 
 # Create required directories
 def ensure_directories():
@@ -25,8 +26,9 @@ def ensure_directories():
     for directory in directories:
         os.makedirs(directory, exist_ok=True)
 
+
 # Model settings
-DEFAULT_MODEL = "llama2:latest"  
+DEFAULT_MODEL = "llama2:latest"
 # Query settings
 DEFAULT_TOP_K = 8
 DEFAULT_RELEVANCE_THRESHOLD = 0.15  # Lower threshold to match typical similarity scores
