@@ -184,6 +184,10 @@ This repository is a static demonstration of basic RAG concepts. It will not rec
 - Active Project: [local-rag-ollama](https://github.com/ResurgentDev/local-rag-ollama)
 - Future Plans: See FUTURE_PLANS.md in the active project repository
 
+## Note
+
+The chaos in my commit history is purely intentional—an experimental study in Git archaeology designed to challenge future developers. Special thanks to Microsoft Copilot for keeping me sane amid YAML warnings, Markdown quirks, and the emotional rollercoaster of flowerbox optimization. Truly a journey worth documenting!
+
 ## License
 
 MIT License - See LICENSE.txt for details
